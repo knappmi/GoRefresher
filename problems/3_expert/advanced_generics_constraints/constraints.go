@@ -1,10 +1,6 @@
 package advconstraints
 
-// TODO: define numeric type set and operations
+// Number is a type set of basic numeric types we support.
+type Number interface { ~int | ~int64 | ~float64 | ~float32 }
 
-type Number interface { /* TODO: add type set ~int | ~int64 | ~float64 */ }
-
-func Add[T Number](a, b T) T { // TODO implement add
-	var zero T
-	return zero
-}
+func Add[T Number](a, b T) T { return a + b }

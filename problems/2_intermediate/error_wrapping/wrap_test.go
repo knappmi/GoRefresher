@@ -1,5 +1,8 @@
 package errorwrapping
 
-import "testing"
+import (
+	"errors"
+	"testing"
+)
 
-func TestWrap(t *testing.T) { t.Skip("TODO: implement error wrapping tests") }
+func TestWrap(t *testing.T) { if !errors.Is(Wrap(), ErrRoot) { t.Fatal("expected root") } }

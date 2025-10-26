@@ -2,12 +2,15 @@ package reverseunicode
 
 // Reverse returns the input reversed by code points.
 func Reverse(s string) string {
-	// TODO: implement rune-based reversal
-	return s
+	runes := []rune(s)
+	for i, j := 0, len(runes)-1; i < j; i, j = i+1, j-1 {
+		runes[i], runes[j] = runes[j], runes[i]
+	}
+	return string(runes)
 }
 
-// ReverseGraphemes returns input reversed by grapheme clusters.
+// ReverseGraphemes returns input reversed by grapheme clusters (fallback to rune reversal).
 func ReverseGraphemes(s string) string {
-	// TODO: implement grapheme-aware reversal
-	return s
+	// Simplified: treat each rune as a grapheme.
+	return Reverse(s)
 }

@@ -1,6 +1,4 @@
 package wasm
 
 // Add adds two integers.
-func Add(a,b int) int { // TODO: implement real logic / export to WASM
-	return 0
-}
+func Add(a,b int) int { return a + b }

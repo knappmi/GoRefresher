@@ -1,10 +1,8 @@
 package benchmarking
 
-import (
-	"strings"
-	"testing"
-)
+import "testing"
 
-func BenchmarkConcatPlus(b *testing.B) { b.Skip("TODO: implement benchmark") }
+var sample = []string{"a","bb","ccc","dddd","ee"}
 
-func BenchmarkStringsBuilder(b *testing.B) { b.Skip("TODO: implement builder benchmark") }
+func BenchmarkConcatPlus(b *testing.B) { for i:=0;i<b.N;i++ { _ = ConcatPlus(sample) } }
+func BenchmarkStringsBuilder(b *testing.B) { for i:=0;i<b.N;i++ { _ = ConcatBuilder(sample) } }

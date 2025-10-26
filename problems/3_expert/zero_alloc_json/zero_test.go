@@ -2,4 +2,9 @@ package zeroallocjson
 
 import "testing"
 
-func TestMarshal(t *testing.T) { t.Skip("TODO: implement zero alloc JSON tests") }
+type sample struct { Name string; Age int; Active bool }
+
+func TestMarshal(t *testing.T) {
+	b := Marshal(sample{Name:"A", Age:5, Active:true})
+	if string(b) != "{\"Name\":\"A\",\"Age\":5,\"Active\":true}" { t.Fatalf("bad json %s", string(b)) }
+}

@@ -1,11 +1,17 @@
 package goroutinesbasics
 
-// IncrementUnsafe increments a shared counter without synchronization.
+import "sync/atomic"
+
+// IncrementUnsafe increments a shared counter without synchronization (intentionally racy under concurrency).
 func IncrementUnsafe(counter *int64, times int) {
-	// TODO: implement intentionally unsafe increment
+	for i := 0; i < times; i++ {
+		*counter = *counter + 1
+	}
 }
 
 // IncrementAtomic increments using atomic operations.
 func IncrementAtomic(counter *int64, times int) {
-	// TODO: implement atomic increment
+	for i := 0; i < times; i++ {
+		atomic.AddInt64(counter, 1)
+	}
 }

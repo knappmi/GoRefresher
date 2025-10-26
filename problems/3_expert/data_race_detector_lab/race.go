@@ -1,6 +1,11 @@
 package racer
 
-var shared int // TODO: protect with mutex in solution
+import "sync/atomic"
 
-func Inc() { // TODO: introduce intentional race then fix
-}
+var shared int64
+
+// Inc performs a safe atomic increment.
+func Inc() { atomic.AddInt64(&shared, 1) }
+// UnsafeInc performs a non-atomic increment (intentional race under concurrency).
+func UnsafeInc() { shared = shared + 1 }
+func Value() int64 { return shared }

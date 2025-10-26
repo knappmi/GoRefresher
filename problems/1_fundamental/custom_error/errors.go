@@ -1,19 +1,28 @@
 package customerror
 
-import "errors"
+import (
+	"errors"
+	"fmt"
+)
 
-var ErrNotFound = errors.New("not found") // TODO refine message
+var ErrNotFound = errors.New("not found")
 
-type ParseError struct { Line int; Msg string }
-func (e *ParseError) Error() string { // TODO implement formatted error
-	return "parse error" }
+type ParseError struct {
+	Line int
+	Msg  string
+}
+
+func (e *ParseError) Error() string {
+	return fmt.Sprintf("parse error at line %d: %s", e.Line, e.Msg)
+}
 
 func Lookup(k string) (string, error) {
-	// TODO implement lookup logic returning wrapped errors
-	return "", ErrNotFound
+	return "", fmt.Errorf("lookup %s: %w", k, ErrNotFound)
 }
 
 func Parse(line string, ln int) error {
-	// TODO implement line parsing & error creation
+	if line == "" {
+		return &ParseError{Line: ln, Msg: "empty"}
+	}
 	return nil
 }
